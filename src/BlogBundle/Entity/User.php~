@@ -1,0 +1,30 @@
+<?PHP
+namespace BlogBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Security\Core\User\UserInterface;
+
+/**
+ * @ORM\Table(name="users")
+ * @ORM\Entity(repositoryClass="socialBundle\Repository\UserRepository")
+ */
+class User 
+{
+    /**
+     * @ORM\Column(type="integer")
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="AUTO")
+     */
+    private $id;
+
+    /**
+     * @ORM\Column(type="string", length=25, unique=true)
+     */
+    private $username;
+
+    /**
+     * @ORM\Column(type="string", length=64)
+     */
+    private $password;
+}
+?>

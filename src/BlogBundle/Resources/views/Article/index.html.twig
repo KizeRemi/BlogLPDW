@@ -1,0 +1,21 @@
+{% extends 'BlogBundle::layout.html.twig' %}
+{% block body %}
+<div class="container">
+    <div class="section">
+		{% for article in articles %}
+				<ul>
+					<li>
+					{{ article.title}}
+					</li>
+					<li>
+						{{ article.content }}
+					</li>
+					<li>
+						Ajouté le {{ article.date|date("d/m/Y") }} paru dans la catégorie: {{ article.category.name }}
+					</li>
+				</ul>
+				<a href="{{ path('show_article', {'id': article.id}) }}">Voir l'article</a>
+				<div class="divider"></div>
+		{% endfor %}
+</div></div>
+{% endblock %}

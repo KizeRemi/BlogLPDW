@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        {% block stylesheets %}
+        {% stylesheets 'bundles/blog/css/*' filter='cssrewrite' %}
+            <link rel="stylesheet" href="{{ asset_url }}" />
+        {% endstylesheets %}
+
+        {% endblock %}
+            <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+        {% block head %}
+            <title>{% block title %}Reseaux sociaux{% endblock %}</title>
+        {% endblock %}
+    </head>
+	<body>
+        <nav class="light-blue lighten-1" role="navigation">
+            <div class="nav-wrapper container"><a id="logo-container" href="#" class="brand-logo">BLOG-LPDW - Rémi Mavillaz </a>
+                <ul id="dropdown1" class="dropdown-content">
+                    {% set categories = getCategories() %}
+                    {% for category in categories %}
+                    <li><a href="{{ path('show_article_category', {'id': category.id}) }}">{{ category.name }}</a></li>
+                    {% endfor %}
+                </ul>
+                <ul class="right hide-on-med-and-down">
+                    <li><a href="{{ path('article') }}">Articles</a></li>
+                    <li><a class="dropdown-button" href="#!" data-activates="dropdown1">Catégories<i class="material-icons right">arrow_drop_down</i></a></li>
+                    {% if app.user %}
+                    <li><a href="{{ path('logout') }}"> Déconnexion </a></li>
+                    {% else %}
+                    <li><a href="{{ path('login') }}"> Connexion </a></li>
+                 {% endif %}
+                </ul>
+            </div>
+        </nav>
+		{% block body %}
+		{% endblock %}
+	</body>
+    <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+	{% block javascripts %}
+   		{% javascripts 
+        '@BlogBundle/Resources/public/js/materialize.js'
+        '@BlogBundle/Resources/public/js/ready.js'
+         %}
+        	<script src="{{ asset_url }}"></script>
+    	{% endjavascripts %}
+    {% endblock %}
+    <footer class="page-footer orange">
+        <div class="container">
+            <div class="row">
+                <div class="col l6 s12">
+                    <h5 class="white-text">Kize Corporation</h5>
+                    <p class="grey-text text-lighten-4">Ceci est un blog créé pour la licence LP-DW.</p>
+                </div>
+                <div class="col l3 s12">
+                    <h5 class="white-text">Menu</h5>
+                        <ul>
+                            <li><a class="white-text" href="{{ path('article') }}">Liste des Articles</a></li>
+                            <li><a class="white-text" href="{{ path('login') }} ">Accéder au panel Admin</a></li>
+                            <li><a class="white-text" href="#!">Rechercher</a></li>
+                        </ul>
+                </div>
+                <div class="col l3 s12">
+                    <h5 class="white-text">Réseaux sociaux</h5>
+                        <ul>
+                            <li><a class="white-text" href="#!">Facebook</a></li>
+                            <li><a class="white-text" href="#!">Twitter</a></li>
+                            <li><a class="white-text" href="#!">LinkedIn</a></li>
+                        </ul>
+                </div>
+            </div>
+        </div>
+        <div class="footer-copyright">
+            <div class="container">
+            Blog-LPDW est créé par Mavillaz Rémi, de la Kize Corporation.
+            Copyright © 2016 Kize Corp. Tous droits réservés.
+            </div>
+        </div>
+    </footer>    
+</html>

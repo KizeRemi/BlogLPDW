@@ -1,0 +1,10 @@
+services:
+    blog.listcategories:
+        class: BlogBundle\ListCategories\ListCategories
+        arguments: ['@doctrine.orm.entity_manager']
+    blog.twig_extension:
+        class: BlogBundle\Twig\blogExtension
+        public: false
+        tags:
+            - { name: twig.extension }
+        arguments: ['@blog.listcategories']

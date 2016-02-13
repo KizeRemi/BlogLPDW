@@ -1,0 +1,34 @@
+# To get started with security, check out the documentation:
+# http://symfony.com/doc/current/book/security.html
+security:
+    encoders:
+        BlogBundle\Entity\User: plaintext
+
+    providers:
+        our_db_provider:
+            entity:
+                class: BlogBundle:User
+
+    firewalls:
+        # disables authentication for assets and the profiler, adapt it according to your needs
+        dev:
+            pattern: ^/(_(profiler|wdt)|css|images|js)/
+            security: false
+
+        main:
+            anonymous: true
+            pattern:    ^/
+            provider: our_db_provider
+            form_login:
+                login_path: /login
+                check_path: /login_check
+                default_target_path: /admin
+            logout:
+                path:   /logout
+                target: /article
+                invalidate_session: false
+                delete_cookies:
+                    a: { path: null, domain: null }
+                    b: { path: null, domain: null }
+    access_control:
+        - { path: ^/admin, roles: IS_AUTHENTICATED_FULLY }

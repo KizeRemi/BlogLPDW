@@ -1,0 +1,34 @@
+{% extends 'BlogBundle::layout.html.twig' %}
+{% block body %}
+<div class="container">
+	<h1>Ajouter un article</h1>
+	<div class="row">
+		{{ form_start(formArticle) }}
+			<div class="row">
+			    <div class="input-field col s6">
+					{{ form_row(formArticle.title) }}
+				</div>
+				<div class="input-field col s6">
+					{{ form_row(formArticle.category) }}
+				</div>
+				<div class="input-field col s12">
+					{{ form_row(formArticle.content) }}
+				</div>
+			</div>
+		{{ form_end(formArticle) }}
+	</div>
+
+	<h3>Ajouter une catégorie</h3>
+	<div class="row">
+		{{ form_start(formCategory) }}
+			<div class="row">
+			    <div class="input-field col s6">
+					{{ form_row(formCategory.name) }}
+				</div>
+			</div>
+		{{ form_end(formCategory) }}
+	</div>
+</div>
+
+{% endblock %}
+
