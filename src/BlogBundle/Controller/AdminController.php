@@ -9,7 +9,7 @@ use BlogBundle\Entity\Article;
 use BlogBundle\Form\Type\ArticleType;
 use BlogBundle\Entity\Category;
 use BlogBundle\Form\Type\CategoryType;
-
+use Symfony\Component\HttpFoundation\Session\Session;
 
 class AdminController extends Controller
 {
@@ -20,7 +20,7 @@ class AdminController extends Controller
     {
     	$article = new Article();
         $category = new Category();
-
+        $session = new Session();
     	$formArticle = $this->createForm(ArticleType::class, $article);
         $formArticle->handleRequest($request);
 
@@ -31,11 +31,13 @@ class AdminController extends Controller
                 $em = $this->getDoctrine()->getManager();
                 $em->persist($article);
                 $em->flush();
+                $session->getFlashBag()->add('success', 'L\'article a été ajouté !');
         }
         if ($formCategory->isValid()) {
                 $em = $this->getDoctrine()->getManager();
                 $em->persist($category);
                 $em->flush();
+                $session->getFlashBag()->add('success', 'La catégorie a été ajoutée !');
         }
         return $this->render('BlogBundle:Admin:index.html.twig', array(
                 'formArticle' => $formArticle->createView(),
