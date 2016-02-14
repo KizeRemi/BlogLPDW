@@ -12,6 +12,8 @@ use Doctrine\ORM\EntityRepository;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use BlogBundle\Entity\Category;
 
+use Symfony\Component\Form\Extension\Core\Type\CollectionType;
+
 class ArticleType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options)
@@ -27,6 +29,10 @@ class ArticleType extends AbstractType
     								'choice_label' => 'name',
                                     'placeholder' => 'Choisir une catégorie...',
                                     'required' => true))
+            ->add('tags', EntityType::class, array(
+                                    'class' => 'BlogBundle:Tag',
+                                    'multiple' => true,
+                                    'expanded' => false))
             ->add('Ajouter', SubmitType::class);
     }
 }

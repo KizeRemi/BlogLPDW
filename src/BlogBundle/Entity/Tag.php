@@ -2,13 +2,12 @@
 namespace BlogBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
-use Symfony\Component\Security\Core\User\UserInterface;
 
 /**
- * @ORM\Table(name="categories")
- * @ORM\Entity(repositoryClass="BlogBundle\Repository\CategoryRepository")
+ * @ORM\Table(name="tags")
+ * @ORM\Entity(repositoryClass="BlogBundle\Repository\TagRepository")
  */
-class Category 
+class Tag
 {
     /**
      * @ORM\Column(type="integer")
@@ -19,7 +18,7 @@ class Category
 
     /**
      * @ORM\Column(type="string", length=25, unique=true)
-     */
+    */
     private $name;
 
 
@@ -59,7 +58,7 @@ class Category
     /**
      * toString
      * @return string
-    */
+     */
     public function __toString() 
     {
         return $this->getName();

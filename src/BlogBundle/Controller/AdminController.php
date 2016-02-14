@@ -9,6 +9,7 @@ use BlogBundle\Entity\Article;
 use BlogBundle\Form\Type\ArticleType;
 use BlogBundle\Entity\Category;
 use BlogBundle\Form\Type\CategoryType;
+use BlogBundle\Entity\Tag;
 use Symfony\Component\HttpFoundation\Session\Session;
 
 class AdminController extends Controller

@@ -4,6 +4,7 @@ namespace BlogBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
+use Doctrine\Common\Collections\ArrayCollection;
 
 /**
  * Article
@@ -57,10 +58,15 @@ class Article
     * @ORM\JoinColumn(name="category_id", referencedColumnName="id")
     */
     private $category;
+    /**
+    * @ORM\ManyToMany(targetEntity="BlogBundle\Entity\Tag", cascade={"persist"})
+    */
+    private $tags;
 
     public function __construct()
     {
         $this->date = new \DateTime();
+        $this->tags = new ArrayCollection();
     }
     /**
      * Get id
@@ -214,5 +220,40 @@ class Article
     public function getCategory()
     {
         return $this->category;
+    }
+
+
+    /**
+     * Add tag
+     *
+     * @param \BlogBundle\Entity\Tags $tag
+     *
+     * @return Article
+     */
+    public function addTag(\BlogBundle\Entity\Tag $tag)
+    {
+        $this->tags[] = $tag;
+
+        return $this;
+    }
+
+    /**
+     * Remove tag
+     *
+     * @param \BlogBundle\Entity\Tags $tag
+     */
+    public function removeTag(\BlogBundle\Entity\Tag $tag)
+    {
+        $this->tags->removeElement($tag);
+    }
+
+    /**
+     * Get tags
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getTags()
+    {
+        return $this->tags;
     }
 }

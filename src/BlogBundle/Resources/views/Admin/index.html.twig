@@ -16,12 +16,19 @@
 			    <div class="input-field col s6">
 					{{ form_row(formArticle.title) }}
 				</div>
+				<div class="input-field col s12">
+					{{ form_row(formArticle.content) }}
+				</div>				
 				<div class="input-field col s6">
 					{{ form_row(formArticle.category) }}
 				</div>
-				<div class="input-field col s12">
-					{{ form_row(formArticle.content) }}
-				</div>
+				<div>
+					<ul>
+	        		{% for tag in formArticle.tags %}
+	            		<li>{{ form_row(tag.name) }}</li>
+	        		{% endfor %}
+	    			</ul>
+    			</div>
 			</div>
 		{{ form_end(formArticle) }}
 	</div>

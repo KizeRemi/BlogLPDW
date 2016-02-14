@@ -1,5 +1,5 @@
 <?php
-namespace OC\PlatformBundle\DataFixtures\ORM;
+namespace BlogBundle\DataFixtures\ORM;
 
 use Doctrine\Common\DataFixtures\FixtureInterface;
 use Doctrine\Common\Persistence\ObjectManager;
