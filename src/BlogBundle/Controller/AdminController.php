@@ -24,6 +24,9 @@ class AdminController extends Controller
         $category = new Category();
         $tag = new Tag();
         $session = new Session();
+        $user = $this->get('security.token_storage')->getToken()->getUser();
+        $article->setUser($user);
+        
     	$formArticle = $this->createForm(ArticleType::class, $article);
         $formArticle->handleRequest($request);
 
