@@ -7,6 +7,7 @@
 <div class="container">
 	<h3>Connexion en tant qu'utilisateur</h3>
 	<div class="row">
+		<div class="col s3">
 		<form action="{{ path('login_check') }}" method="post">
 		    <label for="username">Username:</label>
 		    <input type="text" id="username" name="_username" value="{{ last_username }}" />
@@ -16,6 +17,7 @@
 
 		    <button type="submit">Connexion</button>
 		</form>
+		</div>
 	</div>
 </div>
 {% endblock %}
