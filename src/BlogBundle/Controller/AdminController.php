@@ -10,6 +10,7 @@ use BlogBundle\Form\Type\ArticleType;
 use BlogBundle\Entity\Category;
 use BlogBundle\Form\Type\CategoryType;
 use BlogBundle\Entity\Tag;
+use BlogBundle\Form\Type\TagType;
 use Symfony\Component\HttpFoundation\Session\Session;
 
 class AdminController extends Controller
@@ -21,12 +22,16 @@ class AdminController extends Controller
     {
     	$article = new Article();
         $category = new Category();
+        $tag = new Tag();
         $session = new Session();
     	$formArticle = $this->createForm(ArticleType::class, $article);
         $formArticle->handleRequest($request);
 
         $formCategory = $this->createForm(CategoryType::class, $category);
         $formCategory->handleRequest($request);
+
+        $formTag = $this->createForm(TagType::class, $tag);
+        $formTag->handleRequest($request);
 
         if ($formArticle->isValid()) {
                 $em = $this->getDoctrine()->getManager();
@@ -40,11 +45,35 @@ class AdminController extends Controller
                 $em->flush();
                 $session->getFlashBag()->add('success', 'La catégorie a été ajoutée !');
         }
+        if ($formTag->isValid()) {
+                $em = $this->getDoctrine()->getManager();
+                $em->persist($tag);
+                $em->flush();
+                $session->getFlashBag()->add('success', 'Le tag a été ajoutée !');
+        }
         return $this->render('BlogBundle:Admin:index.html.twig', array(
                 'formArticle' => $formArticle->createView(),
+                'formTag' => $formTag->createView(),
                 'formCategory' => $formCategory->createView()
         ));
     }
+
+    /**
+    * @Route("/admin/article/{id}", name="delete_article", requirements={"id" = "\d+"})
+    */
+    public function delete_articleAction(request $request, $id)
+    {
+        $session = new Session();
+        $em = $this->getDoctrine()->getManager();
+        $article = $this->getDoctrine()->getRepository('BlogBundle:Article')->getById($id);
+
+        $em->remove($article);
+        $em->flush();
+        $session->getFlashBag()->add('success', 'L\'article a été supprimé !');
+
+        return $this->redirectToRoute('article');
+    }
+
     /**
     * @Route("/login", name="login")
     */

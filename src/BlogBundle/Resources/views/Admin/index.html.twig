@@ -33,15 +33,21 @@
 		{{ form_end(formArticle) }}
 	</div>
 
-	<h3>Ajouter une catégorie</h3>
 	<div class="row">
 		{{ form_start(formCategory) }}
-			<div class="row">
-			    <div class="input-field col s6">
+			    <div class=" col s6">
+			    	<h3>Ajouter une catégorie</h3>
 					{{ form_row(formCategory.name) }}
+					{{ form_row(formCategory.Ajouter) }}
 				</div>
-			</div>
 		{{ form_end(formCategory) }}
+		{{ form_start(formTag) }}
+			    <div class="col s6">
+			    	<h3>Ajouter un Tag</h3>
+					{{ form_row(formTag.name) }}
+					{{ form_row(formTag.Ajouter) }}
+				</div>
+		{{ form_end(formTag) }}
 	</div>
 </div>
 
