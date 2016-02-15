@@ -25,9 +25,45 @@ Mettre le dépot à la racine de votre dossier /www
 
 Allez dans la console à la racine de votre site web.
 
-Installez les dépendances:
+Installer les dépendances:
 ```bash
 $php composer.phar install
 ```
 
+Créer le fichier parameters.yml afin de relier l'application avec votre base de données.
 
+Créer les différentes tables de votre base avec la commande:
+```bash
+$php bin/console doctrine:schema:update --force
+```
+
+Ajouter des données de base:
+```bash
+$php bin/console doctrine:fixtures:load
+```
+
+Activer le CSS/JS avec la commande:
+Ajouter des données de base:
+```bash
+$php bin/console assets:install
+$php bin/console assetic:dump
+```
+
+## Accès à l'application:
+```bash
+/localhost/nomdevotresite/web/app_dev.php/article
+```
+
+## Accès à l'admin:
+```bash
+/localhost/nomdevotresite/web/app_dev.php/admin
+```
+3 utilisateurs de base: 
+```bash
+username: Rémi motsdepasse: Rémi
+username: Axel motsdepasse: Axel
+username: Batman motsdepasse: Batman
+```
+
+
+## ENJOY !
