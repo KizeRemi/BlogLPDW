@@ -3,13 +3,19 @@
 <div class="container">
     <div class="row">
       	<div class="col s3 #e57373 red lighten-4">
-		     	<div class="col s12 #e57373 red lighten-3">
-			        <h5>{{ Article.title}}</h5>
-			        <div class="divider"></div>
-			   	</div>
-			    <div class="col s12 #e57373 red lighten-3">
-			    	Créé le :{{ Article.date|date("d/m/Y") }}
-			    </div>
+		    <div class="col s12 #e57373 red lighten-3">
+			    <h5>{{ Article.title}}</h5>
+			    <div class="divider"></div>
+			</div>
+			<div class="col s12 #e57373 red lighten-3">
+			    Créé le :{{ Article.date|date("d/m/Y") }} par {{ Article.user.username }}
+			</div>
+			<div class="col s12 #e57373 red lighten-3">
+			    Catégorie : <a href="{{ path('show_article_category', {'id': Article.category.id }) }}"> {{ Article.category.name }}</a>
+			</div>
+			<div class="col s12 #e57373 red lighten-3">
+			    Tags :{% for tag in Article.tags %} #{{ tag }} {% endfor %}
+			</div>
 		</div>
 	    <div class="col s9 #e0e0e0 grey lighten-1">
 		    <div class="col s12 #e0e0e0 grey lighten-2">

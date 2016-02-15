@@ -6,11 +6,13 @@ A Symfony project created on February 12, 2016, 7:59 pm.
 ATTENTION: PROJET TOUJOURS EN COURS DE FINALISATION
 
 ## Features
+- [x] Routes symfont en annotations
 - [x] Gestion des articles (Affichage, création, modification, suppression)
-- [x] Gestion des catégories (Affichage, création)
-- [x] Gestion des tags (Affichages, création)
+- [x] Gestion des catégories (Affichage, création, recherche)
+- [x] Gestion des tags (Affichage, création)
 - [x] Gestion des commentaires (Affichage et création) En tant qu'anonyme
-- [x] Gestion de la sécurité (Authentification pour créer des articles)
+- [x] Zone administation pour créer/modifier
+- [x] Validation des données formulaires
 
 ## TODO
 -  Amélioration de l'affichage
