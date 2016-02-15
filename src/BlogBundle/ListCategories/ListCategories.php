@@ -19,3 +19,5 @@ class ListCategories
         return $categ;
 	}
 }
+
+?>

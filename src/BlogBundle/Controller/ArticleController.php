@@ -7,6 +7,9 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use BlogBundle\Entity\Article;
 use BlogBundle\Form\Type\ArticleType;
+use BlogBundle\Entity\Comment;
+use BlogBundle\Form\Type\CommentType;
+use Symfony\Component\HttpFoundation\Session\Session;
 
 class ArticleController extends Controller
 {
@@ -16,8 +19,8 @@ class ArticleController extends Controller
     public function indexAction(request $request)
     {
         $em = $this->getDoctrine()->getManager();
-        $articles = $em->getRepository('BlogBundle:Article')->findAll();
-    
+        $articles = $em->getRepository('BlogBundle:Article')->getAll();
+
         return $this->render('BlogBundle:Article:index.html.twig', array(
                 'articles' => $articles
         ));
@@ -29,9 +32,23 @@ class ArticleController extends Controller
     public function showAction(request $request, $id)
     {
         $article = $this->getDoctrine()->getRepository('BlogBundle:Article')->getById($id);
-        
+        $session = new Session();
+        $Comment = new Comment();
+        $Comments = $this->getDoctrine()->getRepository('BlogBundle:Comment')->getByIdArticle($id);
+        $formComment = $this->createForm(CommentType::class, $Comment);
+        $formComment->handleRequest($request);
+
+        if ($formComment->isValid()) {
+                $em = $this->getDoctrine()->getManager();
+                $Comment->setArticle($article);
+                $em->persist($Comment);
+                $em->flush();
+                $session->getFlashBag()->add('success', 'Le commentaire a été ajouté !');
+        }
         return $this->render('BlogBundle:Article:show.html.twig', array(
+                'formComment' => $formComment->createView(),
                 'Article' => $article,
+                'Comments' => $Comments
         ));
     }
 

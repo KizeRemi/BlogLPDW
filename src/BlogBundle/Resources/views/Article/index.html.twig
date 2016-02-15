@@ -11,9 +11,7 @@
 	</div>
 
     <div class="section">
-    	<div class="row">
-			<h2 class="col s12 grey-text">Article récent: {{ "now"|date('d/m/Y') }}</h2>
-		</div>
+    	<center><h1>ACTUALITES DU {{ "now"|date('d/m/Y') }}</h1></center>
 <!-- ARTICLE RECENT -->
 		{% if articles == null %}
 		<div class="row">
@@ -29,11 +27,14 @@
 							{{ article.content }}
 						</div>
 					<div class="row">
-						<div class="col s6">
+						<div class="col s4">
 							<i>Ajouté le {{ article.date|date("d/m/Y") }} paru dans la catégorie: {{ article.category.name }}</i>
 						</div>
-						<div class="col s6">
+						<div class="col s4">
 							Tags:{% for tag in article.tags %} #{{ tag }} {% endfor %}
+						</div>
+						<div class="col s4">
+							<i> Nombre de commentaires: {{ getComments(article.id)|length}}</i>
 						</div>
 					</div>
 					<div class="row">
@@ -63,11 +64,14 @@
 							{{ article.content }}
 						</div>
 						<div class="row">
-							<div class="col s6">
+							<div class="col s4">
 								<i>Ajouté le {{ article.date|date("d/m/Y") }} paru dans la catégorie: {{ article.category.name }}</i>
 							</div>
-							<div class="col s6">
+							<div class="col s4">
 								Tags:{% for tag in article.tags %} #{{ tag }} {% endfor %}
+							</div>
+							<div class="col s4">
+								<i> Nombre de commentaires: {{ getComments(article.id)|length}}</i>
 							</div>
 						</div>
 					<div class="row">

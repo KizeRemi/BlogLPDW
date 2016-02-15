@@ -19,4 +19,13 @@ class ArticleRepository extends \Doctrine\ORM\EntityRepository
 
 		return $query->getSingleResult();
 	}
+
+	public function getAll()
+	{
+		$query = $this->createQueryBuilder('a')
+   				->orderBy('a.date', 'DESC')
+				->getQuery();
+
+		return $query->getResult();
+	}
 }
