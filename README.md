@@ -13,10 +13,10 @@ ATTENTION: PROJET TOUJOURS EN COURS DE FINALISATION
 - [x] Gestion de la sécurité (Authentification pour créer des articles)
 
 ## TODO
-- [] Amélioration de l'affichage
-- [] Modification des articles
-- [] Suppression des Catégories/Tags
-- [] Recherche par tags
+-  Amélioration de l'affichage
+-  Modification des articles
+-  Suppression des Catégories/Tags
+-  Recherche par tags
 
 
 ## Installation
