@@ -32,6 +32,7 @@ class ArticleType extends AbstractType
             ->add('tags', EntityType::class, array(
                                     'class' => 'BlogBundle:Tag',
                                     'multiple' => true,
+                                    'choice_label' => 'name',
                                     'expanded' => false))
             ->add('Ajouter', SubmitType::class);
     }

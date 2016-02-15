@@ -76,7 +76,26 @@ class AdminController extends Controller
 
         return $this->redirectToRoute('article');
     }
+    /**
+    * @Route("/admin/article/edit/{id}", name="edit_article", requirements={"id" = "\d+"})
+    */
+    public function showAction(request $request, $id)
+    {
+        $session = new Session();
+        $article = $this->getDoctrine()->getRepository('BlogBundle:Article')->getById($id);
+        $formArticle = $this->createForm(ArticleType::class, $article);
+        $formArticle->handleRequest($request);
 
+        if ($formArticle->isValid()) {
+                $em = $this->getDoctrine()->getManager();
+                $em->persist($article);
+                $em->flush();
+                $session->getFlashBag()->add('success', 'L\'article a été modifié !');
+        }
+        return $this->render('BlogBundle:Admin:edit.html.twig', array(
+                'formArticle' => $formArticle->createView()
+        ));
+    }
     /**
     * @Route("/login", name="login")
     */

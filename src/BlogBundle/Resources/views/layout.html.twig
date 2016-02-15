@@ -25,6 +25,7 @@
                     <li><a href="{{ path('article') }}">Articles</a></li>
                     <li><a class="dropdown-button" href="#!" data-activates="dropdown1">Catégories<i class="material-icons right">arrow_drop_down</i></a></li>
                     {% if app.user %}
+                    <li><a class="yellow-text" href="{{ path('admin') }}">Administration</a></li>
                     <li><a href="{{ path('logout') }}">Déconnexion ( {{ app.user.username }} )</a></li>
                     {% else %}
                     <li><a href="{{ path('login') }}">Connexion </a></li>
