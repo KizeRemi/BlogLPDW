@@ -2,15 +2,15 @@
 {% block body %}
 <div class="container">
     <div class="row">
-      	<div class="col s3 #e57373 red lighten-3">
-	     	<div class="col s12 #e57373 red lighten-4">
-		        <h5>{{ Article.title}}</h5>
-		        <div class="divider"></div>
-		   	</div>
-		    <div class="col s12 #e57373 red lighten-4">
-		    	Créé le :{{ Article.date|date("d/m/Y") }}
-		    </div>
-      	</div>
+      	<div class="col s3 #e57373 red lighten-4">
+		     	<div class="col s12 #e57373 red lighten-3">
+			        <h5>{{ Article.title}}</h5>
+			        <div class="divider"></div>
+			   	</div>
+			    <div class="col s12 #e57373 red lighten-3">
+			    	Créé le :{{ Article.date|date("d/m/Y") }}
+			    </div>
+		</div>
 	    <div class="col s9 #e0e0e0 grey lighten-1">
 		    <div class="col s12 #e0e0e0 grey lighten-2">
 		    	<p>{{ Article.content }}</p>

@@ -36,6 +36,12 @@ class Article
      * @var string
      *
      * @Assert\NotBlank()
+     * @Assert\Length(
+     *      min = 5,
+     *      max = 30,
+     *      minMessage = "Le titre doit comporter {{ limit }} caractères minimum ",
+     *      maxMessage = "Le titre doit comporter {{ limit }} caractères maximum"
+     * )
      * @ORM\Column(name="title", type="text")
      */
     private $title;

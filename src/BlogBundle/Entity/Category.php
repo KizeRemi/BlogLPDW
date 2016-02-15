@@ -3,6 +3,7 @@ namespace BlogBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Security\Core\User\UserInterface;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @ORM\Table(name="categories")
@@ -19,6 +20,13 @@ class Category
 
     /**
      * @ORM\Column(type="string", length=25, unique=true)
+     * @Assert\NotBlank()
+     * @Assert\Length(
+     *      min = 5,
+     *      max = 15,
+     *      minMessage = "Le nom de la catégorie doit comporter {{ limit }} caractères minimum ",
+     *      maxMessage = "Le nom de la catégorie doit comporter {{ limit }} caractères maximum"
+     * )
      */
     private $name;
 

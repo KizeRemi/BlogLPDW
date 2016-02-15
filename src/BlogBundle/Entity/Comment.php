@@ -27,6 +27,12 @@ class Comment
      * @var string
      *
      * @Assert\NotBlank()
+     * @Assert\Length(
+     *      min = 20,
+     *      max = 255,
+     *      minMessage = "Le message est trop court ",
+     *      maxMessage = "Le message ne doit pas dépasser 255 caractères."
+     * )
      * @ORM\Column(name="content", type="text")
     */
     private $content;
@@ -35,6 +41,17 @@ class Comment
      * @var string
      *
      * @Assert\NotBlank()
+     * @Assert\Regex(
+     *     pattern     = "/^[a-z]+$/i",
+     *     htmlPattern = "^[a-zA-Z]+$",
+     *     message= "Ce champ ne peut comporter que des lettres"
+     * )
+     * @Assert\Length(
+     *      min = 5,
+     *      max = 10,
+     *      minMessage = "Le pseudo est trop court ",
+     *      maxMessage = "Le pseudo est trop long"
+     * )
      * @ORM\Column(name="author", type="text")
      */
     private $author;
